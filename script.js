@@ -1,6 +1,11 @@
 const container = document.querySelector('main');
-
 const popupBlock = document.querySelector('.popup-wrapper');
+
+let user = localStorage.getItem("catUser");
+if (!user) {
+	user = prompt("Представьтесь, пожалуйста")
+	localStorage.setItem("catUser", user);
+}
 
 popupBlock.querySelector('.popup__close').addEventListener('click', function() {
     popupBlock.classList.remove('active');
@@ -37,7 +42,7 @@ const createCard = function(cat, parent) {
 	}
 
     const del = document.createElement('button');
-    del.innerText = 'delete';
+    del.innerText = 'Удалить';
     del.id = cat.id;
     del.addEventListener('click', function(e) {
         let id = e.target.id;
@@ -51,7 +56,7 @@ const createCard = function(cat, parent) {
 // createCard({name: 'Вася', img_link: ''}, container);
 
 // запрос на сервер
-fetch('https://sb-cats.herokuapp.com/api/2/Leontev-E/show')
+fetch(`https://sb-cats.herokuapp.com/api/2/${user}/show`)
     // ответ от сервера что такой запрос существует
     .then(res => res.json())
     // получение результата
@@ -75,7 +80,7 @@ fetch('https://sb-cats.herokuapp.com/api/2/Leontev-E/show')
 // JSON.parse(str) - сделает из строки объект (если внутри строки объек)
 
 const addCat = function(cat) {
-    fetch('https://sb-cats.herokuapp.com/api/2/Leontev-E/add', {
+    fetch(`https://sb-cats.herokuapp.com/api/2/${user}/add`, {
         method: 'POST',
         headers: { // обязательно для POST/PUT/PATCH
             'Content-Type': 'application/json'
@@ -93,7 +98,7 @@ const addCat = function(cat) {
 }
 
 const deleteCat = function(id, tag) {
-	fetch(`https://sb-cats.herokuapp.com/api/2/Leontev-E/delete/${id}`, {
+	fetch(`https://sb-cats.herokuapp.com/api/2/${user}/delete/${id}`, {
 		method: "DELETE"
 	})
 	.then(res => res.json())
@@ -104,7 +109,6 @@ const deleteCat = function(id, tag) {
 		}
 	})
 }
-
 
 addForm.addEventListener("submit", function(e) {
 	e.preventDefault();
