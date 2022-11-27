@@ -194,37 +194,6 @@ updForm.addEventListener("submit", function(e) {
 	updCat(body, updForm.dataset.id);
 });
 
-
-
-
-// const createInfo = function(cat, parent) {
-// 	const bac = document.createElement("div");
-// 	bac.className = "info-block";
-
-// 	const img = document.createElement("div");
-// 	img.className = "card-pic";
-// 	if (cat.img_link) {
-// 		img.style.backgroundImage = `url(${cat.img_link})`;
-// 	} else {
-// 		img.style.backgroundImage = "url(img/cat.png)";
-// 		img.style.backgroundSize = "contain";
-// 		img.style.backgroundColor = "transparent";
-// 	}
-
-// 	const name = document.createElement("h3");
-// 	name.innerText = cat.name;
-
-
-// 	bac.append(img, name, del, upd);
-// 	parent.append(bac);
-// }
-// const seCards = function(arr) {
-//     container.innerHTML = "";
-//     arr.forEach(function(el) {
-//         createInfo(el, container);
-//     })
-// }
-
 const getWord = function (n, w1, w2, w0) {
     if (n % 100 < 11 || n % 100 > 14) {
         if (n % 10 === 1) {
@@ -258,7 +227,7 @@ const closeInfo = function () {
     infoBlock.classList.remove("active");
 }
 
-let back = document.querySelectorAll('.card-pic')
+const back = document.querySelectorAll('.card-pic')
 for (let i = 0; i < back.length; i++) {
 	back[i].addEventListener("click", function(e) {
 		showInfo(cats[i]);
