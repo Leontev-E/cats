@@ -43,7 +43,7 @@ const showForm = function(data) {
 }
 
 const deleteCat = async function(id, tag) {
-	let res = await fetch(`https://sb-cats.herokuapp.com/api/2/${user}/delete/${id}`, {
+	let res = await fetch(`https://srv.petiteweb.dev/api/2/${user}/delete/${id}`, {
 		method: "DELETE"
 	});
 	let data = await res.json();
@@ -101,7 +101,7 @@ const setCards = function(arr) {
 }
 
 const addCat = function(cat) {
-	fetch(`https://sb-cats.herokuapp.com/api/2/${user}/add`, {
+	fetch(`https://srv.petiteweb.dev/api/2/${user}/add`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
@@ -122,7 +122,7 @@ const addCat = function(cat) {
 }
 
 const updCat = async function(obj, id) {
-	let res = await fetch(`https://sb-cats.herokuapp.com/api/2/${user}/update/${id}`, {
+	let res = await fetch(`https://srv.petiteweb.dev/api/2/${user}/update/${id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -158,7 +158,7 @@ if (cats) {
     cats = JSON.parse(cats); // [{}, {}]
     setCards(cats);
 } else {
-    fetch(`https://sb-cats.herokuapp.com/api/2/${user}/show`)
+    fetch(`https://srv.petiteweb.dev/api/2/${user}/show`)
 	.then(res => res.json())
 	.then(result => {
 		if (result.message === "ok") {
